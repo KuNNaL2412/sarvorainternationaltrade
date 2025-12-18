@@ -354,5 +354,41 @@
         </div>
       </section>
     </main>
+    <script>
+  document.getElementById("sendWebhook").addEventListener("click", function () {
+
+    const url = "https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjcwNTZkMDYzMjA0MzI1MjY1NTUzNzUxM2Ii_pc";
+
+    const data = {
+      fullname: "Kunal Pamu",
+      email: "knal@gmail.com",
+      phone: 7385901607,
+      productInterest: "Rose",
+      Message: "I would like to buy rose"
+    };
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.text();
+    })
+    .then(result => {
+      console.log("Webhook sent successfully:", result);
+      alert("Data sent successfully!");
+    })
+    .catch(error => {
+      console.error("Error sending webhook:", error);
+      alert("Failed to send data");
+    });
+  });
+</script>
   </body>
 </html>
